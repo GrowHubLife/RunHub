@@ -1,0 +1,216 @@
+/* ---------------------- RESET ---------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Michroma", sans-serif;
+}
+
+body {
+    background: #161618;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* ---------------------- LAYOUT PRINCIPAL ---------------------- */
+.janela {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ---------------------- SIDEBAR ---------------------- */
+.header-left {
+    width: 260px;
+    background: #0f0f0f;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-right: 1px solid #1b1b1b;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.header-left h1 {
+    font-size: 1.6rem;
+    color: #00ff78;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.hello h3 span {
+    color: #00ff78;
+}
+
+/* Botões do menu */
+.btn-nav-white, .btn-nav, .btn-logout {
+    padding: 10px 15px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-nav-white a, .btn-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.95rem;
+}
+
+/* item ativo */
+.btn-nav {
+    background: #00ff78;
+}
+
+.btn-nav h3 {
+    color: #000;
+    font-weight: 700;
+}
+
+.btn-nav-white:hover,
+.btn-logout:hover {
+    background: #1c1c1c;
+}
+
+/* logout */
+.btn-logout {
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+.btn-logout h3 {
+    color: #fff;
+}
+
+/* ---------------------- CONTEÚDO PRINCIPAL ---------------------- */
+.dash-right {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 30px;
+}
+
+/* ---------------------- CONTAINER DOS POSTS ---------------------- */
+.avisos .container {
+    background: #121212;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 0 12px rgba(0,255,120,0.08);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.avisos h1 {
+    text-align: left;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    color: #00ff78;
+}
+
+/* ---------------------- FORM DE POSTAGEM ---------------------- */
+.div-form label {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: #0f0f0f;
+    border: 1px solid #2b2b2b;
+    margin-top: 6px;
+    color: #fff;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #00ff78;
+}
+
+button {
+    margin-top: 18px;
+    padding: 12px;
+    width: 180px;
+    background: #00ff78;
+    color: #000;
+    border: none;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* ---------------------- FEED DE POSTS ---------------------- */
+
+.feed-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.publicacao {
+    background: #0f0f0f;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 0 6px rgba(0,255,120,0.05);
+    transition: 0.25s;
+}
+
+.publicacao:hover {
+    transform: translateY(-3px);
+}
+
+/* textos */
+.publicacao span {
+    font-size: 0.9rem;
+}
+
+.publicacao-nome {
+    color: #00ff78;
+}
+
+.publicacao-titulo {
+    font-size: 1.1rem;
+}
+
+/* Descrição */
+.publicacao-descricao {
+    background: #161616;
+    padding: 15px;
+    border-radius: 12px;
+    color: #d4d4d4;
+    border: 1px solid #222;
+}
+
+/* Botões editar + deletar */
+.div-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.publicacao-btn-editar {
+    background: #00ff78;
+    color: #000;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.publicacao-btn-editar:hover {
+    transform: translateY(-2px);
+}

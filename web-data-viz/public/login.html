@@ -1,0 +1,79 @@
+    <!DOCTYPE html>
+    <html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>GrowHub | Login</title>
+
+        <script src="./js/login.js"></script>
+
+        <link rel="stylesheet" href="./css/login.css">
+        <link rel="icon" href="./assets/icon/favicon2.ico">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="icon" type="image/png" href="./assets/logo.png">
+
+
+    </head>
+
+    <body>
+
+        <!--Header-->
+
+        <header class="header">
+        <div class="nav-container">
+        <video autoplay muted loop playsinline class="bg-video" src="./assets/login.mp4" type="video/mp4" ></video>
+        
+        <a href="landing.html" class="logo">
+            <img src="./assets/logo.png" alt="logo">
+            RunHub</a>
+
+        <nav class="nav-registro">
+            <a href="cadastro.html" class="btn-cadastrar">REGISTRAR</a>
+        </nav>
+
+        </div>
+
+    </header>
+
+        <div class="login">
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro"></span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card card-login">
+                    <h2>Vamos continuar sua evolução</h2>
+                    <div class="formulario">
+                        <div class="campo">
+                            <span>E-mail:</span>
+                            <input id="email_input" type="text" placeholder="Login">
+                        </div>
+                        <div class="campo">
+                            <span>Senha:</span>
+                            <input id="senha_input" type="password" placeholder="******">
+                        </div>
+                        <button class="botao" onclick="entrar()">Entrar</button>
+                    </div>
+
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/circle-loading.gif" id="loading-gif">
+                    </div>
+
+                    <div id="div_erros_login"></div>
+                </div>
+            </div>
+        </div>
+
+    <div class="footer-copy">
+        © 2025 RunHub — Todos os direitos reservados.
+    </div>
+</footer>
+
+</body>
+</html>
+
+<script src="./js/login.js"></script>
