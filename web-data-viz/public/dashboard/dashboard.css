@@ -21,12 +21,15 @@ body {
   z-index: 10;
   background-color: black;
   padding: 10px 30px;
+    position: fixed;
+  z-index: 1;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .logo {
@@ -292,6 +295,7 @@ body {
 
 /* ==== GRID PRINCIPAL DOS GRÁFICOS ==== */
 /* ==== GRID DOS GRÁFICOS ==== */
+
 .dashboard-grid {
   margin-left: 260px;
   margin-top: 25px;
@@ -307,18 +311,58 @@ body {
 .card {
   background: #121212;
   border-radius: 16px;
-  padding: 12px 14px;
+  padding: 17px 14px;
   display: flex;
   flex-direction: column;
-  height: 280px;          /* 👈 AJUSTE CRUCIAL */
+  align-items: center;
+  height: 280px;          
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0,255,120,0.08);
 }
 
+.card-vertical{
+  height: 700px; 
+  gap: 20px;
+}
+.card .tiposTreino{
+   background: #121212;
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 280px;         
+  max-width: 300px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,255,120,0.08);
+}
+
+#tiposTreino{      
+  max-width: 500px;
+    background: #121212;
+  border-radius: 16px;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;         
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,255,120,0.08);
+  gap: 100px;
+  justify-self: end;
+  
+}
+
+#divPaceTreino{
+
+  margin-bottom: 15px;
+
+}
 /* ==== TÍTULOS ==== */
 .card-title {
   font-size: 15px;
-  color: #00ff78;
+  color: #85ff63;
   text-align: center;
   margin-bottom: 4px;
 }
@@ -330,20 +374,27 @@ body {
   margin-bottom: 8px;
 }
 
-/* ==== CANVAS DO GRÁFICO ==== */
-.card canvas {
-  width: 100% !important;
-  height: 190px !important;   /* 👈 TAMANHO IDEAL */
+.card-tiposTreino {
+  width: 500px;
 }
+
+/* ==== CANVAS DO GRÁFICO ==== */
+canvas {
+
+  width: 100%;
+  max-height: 100%;
+
+}
+
+
+
 
 /* ==== RESPONSIVO PARA NOTEBOOKS 800–999px ==== */
 @media (max-width: 999px) {
   .card {
     height: 240px;
   }
-  .card canvas {
-    height: 160px !important;
-  }
+ 
 }
 #cvs_tipos_treino {
   width: 100% !important;
@@ -355,4 +406,4 @@ body {
   padding: 20px;
   min-height: calc(100vh - 90px);
   transition: 0.3s ease;
-}
+} 
