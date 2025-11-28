@@ -11,7 +11,10 @@ body {
   background: black; 
   color: #fff;
 }
-
+a{
+  text-decoration: none;
+    color: white;
+}
 /* ≡≡≡ HEADER ≡≡≡ */
 .header {
   position: absolute;
@@ -112,7 +115,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow-y: auto; /* 👈 permite rolar verticalmente */
+  overflow-y: auto;
 }
 
 .card-geral::-webkit-scrollbar {
