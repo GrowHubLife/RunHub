@@ -77,7 +77,7 @@
         }
       })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta} porra`);
+        console.log(`#ERRO: ${resposta} A`);
       });
 
     return false;

@@ -1,4 +1,5 @@
 // var ambiente_processo = 'producao';
+
 var ambiente_processo = 'desenvolvimento';
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
@@ -15,12 +16,19 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
+// CONFIGURAÇÃO DO EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "src", "views"));
+
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
-var empresasRouter = require("./src/routes/empresas");        
+var empresasRouter = require("./src/routes/empresas");      
+var registroRouter = require("./src/routes/registro")
+//var graficosRouter = require("./routes/graficos");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +42,8 @@ app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
+app.use("/registro", registroRouter);
+//app.use("/graficos", graficosRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

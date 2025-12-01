@@ -9,7 +9,7 @@
     <title>RunHub</title>
 
     <link rel="icon" type="image/png" href="../assets/logo.png">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 
 
     <script src="../js/sessao.js"></script>
@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="validarSessao(); carregarGraficos(); DadosKPI();">
 
    
 <header class="header">
@@ -99,7 +99,7 @@
 
     <div class="kpi-card">
         <h4>KM total no mês</h4>
-        <h2>50</h2>
+        <h2 id="kpi_total_km">5</h2>
         <p class="kpi-growth">
             <span class="arrow"> <img src="https://img.icons8.com/material-outlined/24/ffffff/road.png" alt="km"></span> 100% das metas estabelecidas já foram atingidas
         </p>
@@ -107,7 +107,7 @@
 
     <div class="kpi-card">
         <h4>Melhor pace</h4>
-        <h2>3.5</h2>
+        <h2 id="kpi_melhor_pace">3.5</h2>
         <p class="kpi-growth">
             <span class="arrow"><img  width="20" height="20" src="https://img.icons8.com/ios/50/ffffff/exercise.png" alt="run"></span> 80% das leituras já foram concluídas
         </p>
@@ -115,13 +115,13 @@
 
     <div class="kpi-card">
         <h4>Dias treinados</h4>
-        <h2>2</h2>
+        <h2 id="kpi_dias_treinados">2</h2>
         <p class="kpi-sub"> <img width="20" height="20" src="https://img.icons8.com/ios/50/ffffff/calendar-1.png" alt="days"> Você completou 2 dias de treino este mês</p>
     </div>
 
     <div class="kpi-card">
         <h4>Calorias totais</h4>
-        <h2>2000</h2>
+        <h2 id="kpi_calorias_total">2000</h2>
         <p class="kpi-growth">
             <span class="arrow"><img  width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/fire-element--v1.png" alt="kcal"></span> 11% a mais que no último mês      
         </p>
@@ -166,26 +166,5 @@
 
 </body>
 
-<script>
-
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
-    }
-
-</script>
 
 </html>

@@ -1,0 +1,83 @@
+var registroModel = require("../models/registroModel");
+
+
+function cadastrar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkUsuario = req.body.fkUsuarioServer;
+    var data_treino = req.body.dataTreinoServer;
+    var distancia_km = req.body.distanciaKMServer;
+    var  tipo_treino = req.body.tipoTreinoServer;
+    var batimentos_medios = req.body.batimentosMedioTServer;
+    var calorias = req.body.caloriasTServer;
+    var sensacao_do_dia = req.body.sensacaoDiaServer;
+    var  observacoes = req.body.observacoesTServer;
+     var pace = req.body.pace;
+
+console.log(data_treino)
+console.log(distancia_km)
+console.log(tipo_treino)
+console.log(batimentos_medios)
+console.log(calorias)
+console.log(sensacao_do_dia)
+console.log(observacoes)
+//     // Faça as validações dos valores
+   if (tipo_treino == undefined) {
+        res.status(400).send("Seu tipo de treino está undefined!");
+    } else if (batimentos_medios == undefined) {
+        res.status(400).send("Seus batimentos está undefined!");
+    } else if (calorias == undefined) {
+        res.status(400).send("Suas calorias está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        registroModel.cadastrar(fkUsuario, data_treino, distancia_km, tipo_treino, batimentos_medios, calorias, sensacao_do_dia, observacoes, pace)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+// Listar total KM
+
+function listarKpis(req, res) {
+    var idUsuario = req.params.id
+
+
+        registroModel.listarKPIs(idUsuario)
+            .then(function (resultado) {
+
+                    if (resultado.length > 0) {
+                            res.status(200).json(resultado);
+
+                    } else {
+                        res.status(403).send("nenhum resultado encontrado");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o listar KPIs! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+
+
+
+module.exports = {
+    cadastrar,
+    listarKpis
+}

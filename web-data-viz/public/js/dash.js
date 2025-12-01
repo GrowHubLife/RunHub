@@ -1,13 +1,15 @@
 const canvasTiposTreino = document.getElementById("tiposTreino");
 const canvasKmSemana = document.getElementById("kmSemanal");
 const cvsPaceTreino = document.getElementById("paceTreino");
-const cvsHeatmap = document.getElementById("heatmapCorrida");
+
+
 
 
 // Plugin → Texto no centro do donut
 const centerText2 = {
   id: "centerText2",
-  afterDraw(chart, args, options) {
+  afterDraw(chart) {
+    
     const { ctx, chartArea: { width, height } } = chart;
 
     ctx.save();
@@ -21,6 +23,8 @@ const centerText2 = {
     ctx.fillText(`${total} treinos`, width / 2, height / .65);
   }
 };
+
+
 
 // DONUT — Tipos de Treino
 new Chart(canvasTiposTreino, {
@@ -62,7 +66,7 @@ new Chart(canvasTiposTreino, {
     cutout: "60%",
 
     plugins: {
-      legend: {
+      legend: { 
         display: true,
         labels: {
           color: "#d9d9d9",
@@ -259,56 +263,93 @@ new Chart(cvsPaceTreino, {
 
 
 
-const dias = [
-  0, 1, 1, 0, 2, 3, 0,
-  2, 0, 4, 1, 0, 3, 2,
-  1, 0, 2, 4, 2, 0, 1,
-];
 
-new Chart(cvsHeatmap, {
-  type: "matrix",
-  data: {
-    datasets: [
-      {
-        label: "Dias de Corrida",
-        data: dias.map((v, i) => ({
-          x: i % 7,
-          y: Math.floor(i / 7),
-          v,
-        })),
+function DadosKPI() {
 
-        backgroundColor(ctx) {
-          const v = ctx.dataset.data[ctx.dataIndex].v;
+  var idUsuario = sessionStorage.ID_USUARIO;
 
-          if (v === 0) return "rgba(255,255,255,0.1)";
-          if (v === 1) return "rgba(0,255,120,0.25)";
-          if (v === 2) return "rgba(0,255,120,0.45)";
-          if (v === 3) return "rgba(0,255,120,0.7)";
-          return "rgba(0,255,120,1)";
-        },
-
-        width: () => 30,
-        height: () => 30,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      x: { display: false },
-      y: { display: false },
+  fetch(`/graficos/pegarDadosKPI/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
     },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: (ctx) => ctx.raw.v + " corridas",
-        },
-      },
-    },
-  },
+    body: JSON.stringify({
+      idUsuarioServer: idUsuario,
+    })
+  }).then(function (resposta) {
 
+    if (resposta.ok) {
 
-});
+      if (resposta.status == 204) {
+        console.log('Nenhum dado encontrado');
+        throw 'Nenhum resultado encontrado';
+      }
 
+      resposta.json().then(function (resposta) {
 
+        var dados = resposta[0];
+        console.log("Dados KPI:", dados);
 
+        // Preenchendo os KPIs no HTML
+        document.getElementById("kpi_total_km").innerHTML = dados.totalKM;
+        document.getElementById("kpi_melhor_pace").innerHTML = dados.melhorPace;
+        document.getElementById("kpi_dias_treinados").innerHTML = dados.diasTreinados;
+        document.getElementById("kpi_calorias_total").innerHTML = dados.caloriasTotal;
+
+        // Nome do usuário
+        b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
+      });
+
+    } else {
+      throw ('Houve um erro na API!');
+    }
+
+  }).catch(function (erro) {
+    console.error("ERRO: ", erro);
+  });
+
+}
+
+function DadoKPI() {
+
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/registro/listarKpis/${idUsuario}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(function (resposta) {
+
+    if (resposta.ok) {
+
+      if (resposta.status == 204) {
+        console.log('Nenhum dado encontrado');
+        throw 'Nenhum resultado encontrado';
+      }
+
+      resposta.json().then(function (resposta) {
+
+        var dados = resposta[0];
+        console.log("Dados KPI:", dados);
+
+        // Preenchendo os KPIs no HTML
+        document.getElementById("kpi_total_km").innerHTML = dados.totalKM;
+        document.getElementById("kpi_melhor_pace").innerHTML = dados.melhorPace;
+        document.getElementById("kpi_dias_treinados").innerHTML = dados.diasTreinados;
+        document.getElementById("kpi_calorias_total").innerHTML = dados.caloriasTotal;
+
+        // Nome do usuário
+        b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
+      });
+
+    } else {
+      throw ('Houve um erro na API!');
+    }
+
+  }).catch(function (erro) {
+    console.error("ERRO: ", erro);
+  });
+
+}
+DadoKPI()

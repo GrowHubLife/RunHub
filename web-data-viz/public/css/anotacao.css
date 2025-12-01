@@ -1,47 +1,82 @@
+/* ===== ÁREA DE CONTEÚDO (fora sidebar/header) ===== */
 .anotacao-container {
-    margin: 80px auto;
-    max-width: 600px;
-    padding: 40px;
-    border-radius: 20px;
-
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(10px);
-    background-color: black;
-
-    color: white;
+  margin-left: 240px;        /* sidebar */
+  margin-top: 62px;          /* header */
+  padding: 25px;
 }
 
+/* ===== CARD ===== */
+.anotacao-container {
+  max-width: 420px;          
+  background: #0f0f0f;
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid #1c1c1c;
+}
+
+/* ===== TÍTULO ===== */
 .anotacao-container h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+  font-size: 18px;
+  margin-bottom: 18px;
+  color: #b2ff59;            /* mesmo verde do menu ativo */
+  text-align: center;
 }
 
+/* ===== CAMPOS ===== */
 .campo {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
 }
 
 .campo span {
-    margin-bottom: 5px;
+  font-size: 11px;
+  color: #9a9a9a;
+  letter-spacing: 0.5px;
 }
 
-.campo input, .campo select, .campo textarea {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.15);
-    color: white;
+/* ===== INPUTS ===== */
+.campo input,
+.campo select,
+.campo textarea {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 7px 10px;        /* mais baixo */
+  font-size: 12px;
+  color: #fff;
+  outline: none;
+  font-family: "Michroma", sans-serif;
 }
 
+.campo textarea {
+  height: 65px;
+  resize: none;
+}
+
+/* ===== FOCUS ===== */
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: #b2ff59;
+}
+
+/* ===== BOTÃO ===== */
 .botao {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.2rem;
+  width: 100%;
+  margin-top: 14px;
+  padding: 9px;
+  border-radius: 12px;
+  border: none;
+  background: #b2ff59;
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Michroma", sans-serif;
+}
+
+.botao:hover {
+  opacity: 0.9;
 }
