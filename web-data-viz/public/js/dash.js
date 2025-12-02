@@ -3,9 +3,34 @@ const canvasKmSemana = document.getElementById("kmSemanal");
 const cvsPaceTreino = document.getElementById("paceTreino");
 
 
+function DadosGrafico (){
+  var idUsuario = sessionStorage.ID_USUARIO
+
+    fetch("/graficos/pegarDados", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body:JSON.stringify ({
+        idUsuarioServer: idUsuario,
+      })
+    }).then (function (resposta)) {
+      if(resposta.ok) {
+        if(resposta.status == 204){
+          console.log('Nenhum dado encontrado')
+          throw 'Nenhum resultado encontrado'
+        }
+      } 
+    }
+}
 
 
-// Plugin → Texto no centro do donut
+resposta.json().then(function (resposta)){
+  var dados = resposta[0];
+  console.log(dados)
+
+  // Plugin → Texto no centro do donut
 const centerText2 = {
   id: "centerText2",
   afterDraw(chart) {
@@ -36,7 +61,7 @@ new Chart(canvasTiposTreino, {
     datasets: [
       {
         label: "Tipos de Treino",
-        data: [8, 4, 12, 6, 3], // ← valores de exemplo
+        data: (dados.tipo_treino), // ← valores de exemplo
 
         backgroundColor: [
           "rgba(0, 255, 120, 0.65)",   // Tiro
@@ -259,97 +284,6 @@ new Chart(cvsPaceTreino, {
     },
   },
 });
-
-
-
-
-
-function DadosKPI() {
-
-  var idUsuario = sessionStorage.ID_USUARIO;
-
-  fetch(`/graficos/pegarDadosKPI/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      idUsuarioServer: idUsuario,
-    })
-  }).then(function (resposta) {
-
-    if (resposta.ok) {
-
-      if (resposta.status == 204) {
-        console.log('Nenhum dado encontrado');
-        throw 'Nenhum resultado encontrado';
-      }
-
-      resposta.json().then(function (resposta) {
-
-        var dados = resposta[0];
-        console.log("Dados KPI:", dados);
-
-        // Preenchendo os KPIs no HTML
-        document.getElementById("kpi_total_km").innerHTML = dados.totalKM;
-        document.getElementById("kpi_melhor_pace").innerHTML = dados.melhorPace;
-        document.getElementById("kpi_dias_treinados").innerHTML = dados.diasTreinados;
-        document.getElementById("kpi_calorias_total").innerHTML = dados.caloriasTotal;
-
-        // Nome do usuário
-        b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
-      });
-
-    } else {
-      throw ('Houve um erro na API!');
-    }
-
-  }).catch(function (erro) {
-    console.error("ERRO: ", erro);
-  });
-
 }
 
-function DadoKPI() {
 
-  var idUsuario = sessionStorage.ID_USUARIO;
-
-  fetch(`/registro/listarKpis/${idUsuario}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(function (resposta) {
-
-    if (resposta.ok) {
-
-      if (resposta.status == 204) {
-        console.log('Nenhum dado encontrado');
-        throw 'Nenhum resultado encontrado';
-      }
-
-      resposta.json().then(function (resposta) {
-
-        var dados = resposta[0];
-        console.log("Dados KPI:", dados);
-
-        // Preenchendo os KPIs no HTML
-        document.getElementById("kpi_total_km").innerHTML = dados.totalKM;
-        document.getElementById("kpi_melhor_pace").innerHTML = dados.melhorPace;
-        document.getElementById("kpi_dias_treinados").innerHTML = dados.diasTreinados;
-        document.getElementById("kpi_calorias_total").innerHTML = dados.caloriasTotal;
-
-        // Nome do usuário
-        b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
-      });
-
-    } else {
-      throw ('Houve um erro na API!');
-    }
-
-  }).catch(function (erro) {
-    console.error("ERRO: ", erro);
-  });
-
-}
-DadoKPI()
