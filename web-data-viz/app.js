@@ -25,7 +25,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
-var empresasRouter = require("./src/routes/empresas");      
+//var empresasRouter = require("./src/routes/empresas");      
 var registroRouter = require("./src/routes/registro")
 //var graficosRouter = require("./routes/graficos");
 //var bobIARouter = require("./src/routes/bobIA");
@@ -41,7 +41,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
-app.use("/empresas", empresasRouter);
+//app.use("/empresas", empresasRouter);
 app.use("/registro", registroRouter);
 //app.use("/bobIA", bobIARouter);
 

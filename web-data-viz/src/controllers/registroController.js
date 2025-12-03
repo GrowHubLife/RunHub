@@ -49,7 +49,6 @@ console.log(observacoes)
 }
 
 
-// Listar total KM
 
 function listarKpis(req, res) {
     var idUsuario = req.params.id
@@ -74,6 +73,38 @@ function listarKpis(req, res) {
             );
     }
 
+function buscarKpis(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    registroModel.buscarKpis(idUsuario)
+        .then(function (resultado) {
+
+            let resposta = {
+                totalKM: {
+                    valor: resultado[0].totalKM,
+                    descricao: "Total de quilômetros percorridos neste mês."
+                },
+                melhorPace: {
+                    valor: resultado[0].melhorPace,
+                    descricao: "Seu melhor pace registrado no período."
+                },
+                diasTreinados: {
+                    valor: resultado[0].diasTreinados,
+                    descricao: "Número total de dias com treino registrado."
+                },
+                caloriasTotal: {
+                    valor: resultado[0].caloriasTotal,
+                    descricao: "Somatória de calorias queimadas nos treinos."
+                }
+            };
+
+            res.json(resposta);
+        })
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+            res.status(500).json(erro);
+        });
+}
 
 
         function paceTreino(req, res){
@@ -153,5 +184,6 @@ module.exports = {
     listarKpis,
     paceTreino,
     KmSemana,
-    tiposTreino   
+    tiposTreino,
+    buscarKpis
 }

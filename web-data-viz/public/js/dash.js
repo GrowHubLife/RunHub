@@ -182,7 +182,7 @@ const centerText2 = {
     const { ctx, chartArea: { width, height } } = chart;
 
     ctx.save();
-    ctx.font = "700 15px Michroma";
+    ctx.font = "700 23px Michroma";
     ctx.fillStyle = "#00FF78"; 
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -331,6 +331,30 @@ function carregarTiposTreino() {
 
   console.log(idUsuario)
 
+
+function carregarKpis() {
+    fetch(`/registro/kpis/${idUsuario}`)
+        .then(res => res.json())
+        .then(data => {
+
+            // Valores
+            document.getElementById("kpi_total_km").innerHTML = data.totalKM.valor;
+            document.getElementById("kpi_melhor_pace").innerHTML = data.melhorPace.valor;
+            document.getElementById("kpi_dias_treinados").innerHTML = data.diasTreinados.valor;
+            document.getElementById("kpi_calorias_total").innerHTML = data.caloriasTotal.valor;
+
+            // Descrições
+            document.getElementById("desc_total_km").innerHTML += data.totalKM.descricao;
+            document.getElementById("desc_melhor_pace").innerHTML += data.melhorPace.descricao;
+            document.getElementById("desc_dias_treinados").innerHTML += data.diasTreinados.descricao;
+            document.getElementById("desc_calorias_total").innerHTML += data.caloriasTotal.descricao;
+        });
+}
+
+carregarKpis();
+
+
 paceTreino();
 kmSemana();
 carregarTiposTreino();
+

@@ -2,33 +2,26 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RunHub</title>
 
     <link rel="icon" type="image/png" href="../assets/logo.png">
     <link rel="stylesheet" href="../css/dashboard.css">
-
+    <link rel="stylesheet" href="../css/anotacao.css">
+    <link rel="stylesheet" href="../css/mural.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
 </head>
 
 <body onload="validarSessao();">
 
-   
 <header class="header">
     <div class="nav-container">
 
         <a href="#" class="logo">
-            <img src="../assets/logo.png" alt="logo">
-            RunHub
+            <img src="../assets/logo.png" alt="logo"> RunHub
         </a>
 
         <nav class="navbar">
@@ -41,7 +34,7 @@
 
         <nav class="nav-perfil">
             <a href="#" class="btn-perfil">
-                <img src="https://img.icons8.com/windows/96/ffffff/user-male-circle.png" alt="perfil">
+                <img src="https://img.icons8.com/windows/96/ffffff/user-male-circle.png">
             </a>
         </nav>
 
@@ -54,116 +47,477 @@
     <div class="profile">
         <div class="avatar"></div>
         <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-        
     </div>
 
-    <!-- Box de pesquisa -->
+    <!-- Pesquisa -->
     <div class="box-pesquisa">
         <input type="text" placeholder="Search...">
     </div>
 
-    <!-- DASHBOARDS -->
-    <div class="secao-titulo">DASHBOARDS</div>
+<!-- DASHBOARDS -->
+<div class="secao-titulo">DASHBOARDS</div>
 
-    <ul class="menu">
-        <li class="active">
-            <img class="icon" width="20" height="20" src="https://img.icons8.com/windows/32/ffffff/group-of-projects.png" alt=""> Overview
-        </li>
-        <li><img class="icon" width="20" height="20" src="https://img.icons8.com/ios-glyphs/90/ffffff/analytics.png" alt="analise"> Analytics</li>
-        <li><a href="./anotacao.html"><img class="icon" width="20" height="20"src="https://img.icons8.com/material/24/ffffff/separate-document.png" alt="areas"> Registrar Treino </a></li>
-    </ul>
+<ul class="menu">
+    <li id="item_overview" onclick="ativar('item_overview'); mostrarDashboard()" class="active">
+        <img class="icon" width="20" src="https://img.icons8.com/windows/32/ffffff/group-of-projects.png">
+        Overview
+    </li>
 
-    <!-- SETTINGS -->
-    <div class="secao-titulo">Áreas</div>
+    <li id="item_analytics" onclick="ativar('item_analytics')">
+        <img class="icon" width="20" src="https://img.icons8.com/ios-glyphs/90/ffffff/analytics.png">
+        Analytics
+    </li>
 
-    <ul class="menu">
-        <li><img  class="icon" width="20" height="20" src="https://img.icons8.com/external-outline-black-m-oki-orlando/64/ffffff/external-historical-data-warehouse-outline-black-m-oki-orlando.png" alt="study"> Histórico</li>
-        <li><img  class="icon" width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/star--v1.png" alt="book">Consquistas</li>
-        <li><img  class="icon" width="20" height="20" src="https://img.icons8.com/ios-filled/50/ffffff/strength.png" alt="treino">Meus Treinos</li>
-        <li><img class="icon" width="20" height="20"  src="https://img.icons8.com/ios-filled/50/ffffff/exercise.png" alt="financeiro"> Treinamento</li>
-        <li><img  class="icon" width="20" height="20" src="https://img.icons8.com/external-outline-icons-pause-08/64/ffffff/external-bulb-furniture-outline-icons-pause-08.png" alt="study">Dicas</li>
-        <li><img  class="icon" width="20" height="20" src="https://img.icons8.com/ios-filled/50/ffffff/people-working-together.png" alt="study">Comunidade</li>
-        <li><img  class="icon" width="20" height="20" src="https://img.icons8.com/ios-filled/50/ffffff/activity.png" alt="study">Lifestyle</li>
+    <li id="item_registro" onclick="ativar('item_registro'); mostrarRegistro()">
+        <img class="icon" width="20" src="https://img.icons8.com/material/24/ffffff/separate-document.png">
+        Registrar Treino
+    </li>
+</ul>
 
-</a>
-    </ul>
+<div class="secao-titulo">Áreas</div>
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+<ul class="menu">
+    <li id="item_historico" onclick="ativar('item_historico')">
+        <img class="icon" width="20"
+            src="https://img.icons8.com/external-outline-black-m-oki-orlando/64/ffffff/external-historical-data-warehouse-outline-black-m-oki-orlando.png">
+        Histórico
+    </li>
+
+    <li id="item_conquistas" onclick="ativar('item_conquistas')">
+        <img class="icon" width="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/star--v1.png">
+        Conquistas
+    </li>
+
+    <li id="item_meus_treinos" onclick="ativar('item_meus_treinos')">
+        <img class="icon" width="20" src="https://img.icons8.com/ios-filled/50/ffffff/strength.png">
+        Meus Treinos
+    </li>
+
+    <li id="item_treinamento" onclick="ativar('item_treinamento')">
+        <img class="icon" width="20" src="https://img.icons8.com/ios-filled/50/ffffff/exercise.png">
+        Treinamento
+    </li>
+
+    <li id="item_dicas" onclick="ativar('item_dicas')">
+        <img class="icon" width="20" src="https://img.icons8.com/external-outline-icons-pause-08/64/ffffff/external-bulb-furniture-outline-icons-pause-08.png">
+        Dicas
+    </li>
+   
+    <li id="item_comunidade" onclick="ativar('item_comunidade'); mostrarComunidade()">
+        <img class="icon" width="20" src="https://img.icons8.com/external-outline-icons-pause-08/64/ffffff/external-bulb-furniture-outline-icons-pause-08.png">
+        Comunidade 
+    </li>
+
+</li>
+
+</ul>
+
+
+    <div class="btn-logout" onclick="limparSessao()">
+        <h3>Sair</h3>
+    </div>
 </div>
+
+
+<div id="telaDashboard" class="tela">
 
     <div class="container-dash">
-        
-<div class="kpi-container">
 
-    <div class="kpi-card">
-        <h4>KM total no mês</h4>
-        <h2 id="kpi_total_km">5</h2>
-        <p class="kpi-growth">
-            <span class="arrow"> <img src="https://img.icons8.com/material-outlined/24/ffffff/road.png" alt="km"></span> 100% das metas estabelecidas já foram atingidas
-        </p>
-    </div>
+        <div class="kpi-container">
 
-    <div class="kpi-card">
-        <h4>Melhor pace</h4>
-        <h2 id="kpi_melhor_pace">3.5</h2>
-        <p class="kpi-growth">
-            <span class="arrow"><img  width="20" height="20" src="https://img.icons8.com/ios/50/ffffff/exercise.png" alt="run"></span> 80% das leituras já foram concluídas
-        </p>
-    </div>
-
-    <div class="kpi-card">
-        <h4>Dias treinados</h4>
-        <h2 id="kpi_dias_treinados">2</h2>
-        <p class="kpi-sub"> <img width="20" height="20" src="https://img.icons8.com/ios/50/ffffff/calendar-1.png" alt="days"> Você completou 2 dias de treino este mês</p>
-    </div>
-
-    <div class="kpi-card">
-        <h4>Calorias totais</h4>
-        <h2 id="kpi_calorias_total">2000</h2>
-        <p class="kpi-growth">
-            <span class="arrow"><img  width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/fire-element--v1.png" alt="kcal"></span> 11% a mais que no último mês      
-        </p>
-    </div>  
-
+      <div class="kpi-card">
+    <h4>KM total no mês</h4>
+    <h2 id="kpi_total_km">5</h2>
+    <p class="kpi-growth" id="desc_total_km">
+        <span class="arrow"><img src="https://img.icons8.com/material-outlined/24/ffffff/road.png"></span>
+        <!-- descrição aparece aqui pelo JS -->
+    </p>
 </div>
-<div class="dashboard-grid">
 
-    <div class="card-vertical">
+<div class="kpi-card">
+    <h4>Melhor pace</h4>
+    <h2 id="kpi_melhor_pace">3.5</h2>
+    <p class="kpi-growth" id="desc_melhor_pace">
+        <span class="arrow"><img width="20" src="https://img.icons8.com/ios/50/ffffff/exercise.png"></span>
+        <!-- descrição -->
+    </p>
+</div>
 
-        <div id="divPaceTreino" class="card">
+<div class="kpi-card">
+    <h4>Dias treinados</h4>
+    <h2 id="kpi_dias_treinados">2</h2>
+    <p class="kpi-sub" id="desc_dias_treinados">
+        <img width="20" src="https://img.icons8.com/ios/50/ffffff/calendar-1.png">
+        <!-- descrição -->
+    </p>
+</div>
 
-            <canvas id="paceTreino"></canvas>
+<div class="kpi-card">
+    <h4>Calorias totais</h4>
+    <h2 id="kpi_calorias_total">2000</h2>
+    <p class="kpi-growth" id="desc_calorias_total">
+        <span class="arrow"><img width="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/fire-element--v1.png"></span>
+        <!-- descrição -->
+    </p>
+</div>
 
-        </div>
 
-        <div class="card">
 
-            <canvas id="kmSemana"></canvas>
-
-        </div>
-
-    </div>
     
-    <div class="card-tiposTreino">
 
-        <canvas id="tiposTreino"></canvas>
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="card-vertical">
+                <div class="card">
+                    <canvas id="paceTreino"></canvas>
+                </div>
+
+                <div class="cardkm">
+                    <canvas id="kmSemana"></canvas>
+                </div>
+            </div>
+
+            <div class="card-tiposTreino">
+                <canvas id="tiposTreino"></canvas>
+            </div>
+
+        </div>
 
     </div>
 
-</div>
- 
-
-    <!-- Chart.js principal -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/dash.js"></script>
+</div>
+
+<div id="telaRegistro" class="tela" style="display:none;">
+
+    <div class="anotacao-container">
+        <h2>Registrar Treino de Corrida</h2>
+
+        <div class="campo">
+            <span>Data do treino</span>
+            <input type="date" id="data" value="2025-12-04">
+        </div>
+
+        <div class="campo">
+            <span>Distância (km)</span>
+            <input type="number" id="distancia" step="0.01" value="10">
+        </div>
+
+        <div class="campo">
+            <span>Tempo Total (min)</span>
+            <input type="number" id="tempo" value="60">
+        </div>
+
+        <div class="campo">
+            <span>Pace (min/km)</span>
+            <input type="number" id="pace" step="0.01" value="5">
+        </div> 
+
+        <div class="campo">
+            <span>Tipo de treino</span>
+            <select id="tipo">
+                <option>Leve</option>
+                <option>Intervalado</option>
+                <option>Longão</option>
+                <option>Tiro</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <span>Batimentos médios</span>
+            <input type="number" id="batimentos" value="140">
+        </div>
+
+        <div class="campo">
+            <span>Calorias</span>
+            <input type="number" id="calorias" value="700">
+        </div>
+
+        <div class="campo">
+            <span>Sensação do dia (1 a 10)</span>
+            <input type="number" id="sensacao" min="1" max="10" value="10">
+        </div>
+        
+        <div class="campo">
+            <span>Observações</span>
+            <textarea id="obs">Treino realizado em ritmo moderado, clima agradável.</textarea>
+        </div>
+
+        <button class="botao" onclick="cadastrar()">Salvar Treino</button>
+    </div>
+
 
 </div>
+
+<script src="../js/anotacao.js"></script>
+<script src="../js/mural.js"></script>
+
+<div id="telaComunidade" class="tela" style="display:none;">
+    <div style="padding: 30px;">
+        <h2>Comunidade RunHub</h2>
+        <p>Aqui ficará o mural, posts e interações entre corredores.</p>
+  
+        <div class="dash-right">
+
+
+            <div class="avisos">
+                <div id="alerta">
+                </div>
+                <div class="container">
+                    <h1>Comunidade RunHub</h1>
+                    <div class="div-form">
+                        <form id="form_postagem" method="post" onsubmit="return publicar()">
+                            <label>
+                                Título:
+                                <br>
+                                <input name="titulo" id="titulo" maxlength="100" type="text">
+                            </label>
+                            <br>
+                            <br>
+                            <label>
+                                Descrição (máximo de 250 caracteres):
+                                <br>
+                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                            </label>
+                            <br>
+                            <br>
+                            <button>Enviar</button>
+                        </form>
+                    </div>
+                    <h1>Feed dos Corredores</h1>
+                    <div class="div-results">
+                        <div id="feed_container" class="feed-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+  </div>
+</div>
+
+
+<!-- Script da troca de telas -->
+<script>
+
+     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+function esconderTodas() {
+    document.getElementById("telaDashboard").style.display = "none";
+    document.getElementById("telaRegistro").style.display = "none";
+    document.getElementById("telaComunidade").style.display = "none";
+}
+
+function mostrarDashboard() {
+    esconderTodas();
+    document.getElementById("telaDashboard").style.display = "block";
+}
+
+function mostrarRegistro() {
+    esconderTodas();
+    document.getElementById("telaRegistro").style.display = "block";
+}
+
+function mostrarComunidade() {
+    esconderTodas();
+    document.getElementById("telaComunidade").style.display = "block";
+    atualizarFeed();
+}
+
+function ativar(idAtivo) {
+  // IDs de todos os itens do menu
+  var idsMenu = [
+    "item_overview",
+    "item_analytics",
+    "item_registro",
+    "item_historico",
+    "item_conquistas",
+    "item_meus_treinos",
+    "item_treinamento",
+    "item_dicas",
+    "item_comunidade"
+  ];
+
+  // Tira estilização
+  for (var i = 0; i < idsMenu.length; i++) {
+    var item = document.getElementById(idsMenu[i]);
+
+    if (item) {
+      item.style.background = "transparent";
+      item.style.color = "#ffffff";
+      item.style.fontWeight = "400";
+
+      var icones = item.getElementsByTagName("img");
+      if (icones && icones[0]) {
+        icones[0].style.opacity = "0.85";
+      }
+    }
+  }
+
+  // Estiliza
+  var itemAtivo = document.getElementById(idAtivo);
+  if (itemAtivo) {
+    itemAtivo.style.background = "#b2ff59";
+    itemAtivo.style.color = "#000000";
+    itemAtivo.style.fontWeight = "700";
+
+    var iconesAtivos = itemAtivo.getElementsByTagName("img");
+    if (iconesAtivos && iconesAtivos[0]) {
+      iconesAtivos[0].style.opacity = "1";
+    }
+  }
+}  
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            descricao: form_postagem.descricao.value
+        }
+
+        fetch(`/avisos/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "/dashboard/cards.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function editar(idAviso) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
+        console.log("cliquei em editar - " + idAviso);
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
+        window.location = "/dashboard/edicao-aviso.html"
+
+    }
+
+    function deletar(idAviso) {
+        console.log("Criar função de apagar post escolhido - ID" + idAviso);
+        fetch(`/avisos/deletar/${idAviso}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/cards.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+        fetch("/avisos/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+
+
+                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        btnEditar.innerHTML = "Editar";
+                        btnDeletar.innerHTML = "Deletar";
+
+                        divPublicacao.className = "publicacao";
+                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+                        divDescricao.className = "publicacao-descricao";
+
+                        divButtons.className = "div-buttons"
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idAviso;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+</script>
 
 </body>
-
-
 </html>

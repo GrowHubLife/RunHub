@@ -3,6 +3,7 @@ var database = require("../database/config");
 
 function listarKPIs(idUsuario) {
   var instrucaoSql = `
+  
     SELECT 
     IFNULL((
         SELECT SUM(distancia_km)
@@ -85,6 +86,21 @@ function tiposTreino(idUsuario){
   return database.executar(instrucaoSql);
 }
 
+var database = require("../database/config");
+
+function buscarKpis(idUsuario) {
+    var instrucao = `
+        SELECT 
+            SUM(distancia_km) AS totalKM,
+            MIN(pace) AS melhorPace,
+            COUNT(*) AS diasTreinados,
+            SUM(calorias) AS caloriasTotal
+        FROM registro
+        WHERE fkUsuario = ${idUsuario};
+    `;
+
+    return database.executar(instrucao);
+}
 
 
 function cadastrar(fkUsuario, data_treino, distancia_km, tipo_treino, batimentos_medios, calorias, sensacao_do_dia, observacoes, pace) {
@@ -93,10 +109,13 @@ function cadastrar(fkUsuario, data_treino, distancia_km, tipo_treino, batimentos
   return database.executar(instrucaoSql);
 }
 
+
+
 module.exports = {
   cadastrar,
   listarKPIs,
   paceTreino,
   KmSemana,
-  tiposTreino
+  tiposTreino,
+  buscarKpis
  };

@@ -11,6 +11,11 @@ router.get("/listarKpis/:id", function (req, res) {
     registroController.listarKpis(req, res);
 })
 
+router.get("/kpis/:idUsuario", function (req, res) {
+    registroController.buscarKpis(req, res);
+});
+
+
 router.get("/paceTreino/:idUsuario", function (req, res) {
     registroController.paceTreino(req, res);
 })
@@ -22,5 +27,7 @@ router.get("/KmSemana/:idUsuario", function (req, res) {
 router.get("/tiposTreino/:idUsuario", function (req, res) {
     registroController.tiposTreino(req, res);
 })
+
+
 
 module.exports = router;

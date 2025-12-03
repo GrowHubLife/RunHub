@@ -73,15 +73,6 @@ body {
     background: #1c1c1c;
 }
 
-/* logout */
-.btn-logout {
-    border: 1px solid #444;
-    cursor: pointer;
-}
-
-.btn-logout h3 {
-    color: #fff;
-}
 
 /* ---------------------- CONTEÚDO PRINCIPAL ---------------------- */
 .dash-right {
@@ -104,13 +95,16 @@ body {
     text-align: left;
     font-size: 1.4rem;
     margin-bottom: 18px;
-    color: #00ff78;
+    color: #b2ff59;
+        margin-top: 10px;
+
 }
 
 /* ---------------------- FORM DE POSTAGEM ---------------------- */
 .div-form label {
     font-size: 0.9rem;
     color: #ccc;
+    
 }
 
 input, textarea {
@@ -126,14 +120,14 @@ input, textarea {
 
 input:focus,
 textarea:focus {
-    border-color: #00ff78;
+    border-color: #b2ff59;
 }
 
 button {
     margin-top: 18px;
     padding: 12px;
     width: 180px;
-    background: #00ff78;
+    background: #b2ff59;
     color: #000;
     border: none;
     font-weight: 700;
