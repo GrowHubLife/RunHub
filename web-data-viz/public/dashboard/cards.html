@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(); carregarGraficos(); DadosKPI();">
+<body onload="validarSessao();">
 
    
 <header class="header">
@@ -131,33 +131,32 @@
 <div class="dashboard-grid">
 
     <div class="card-vertical">
-         <div id="divPaceTreino" class="card">
+
+        <div id="divPaceTreino" class="card">
+
             <canvas id="paceTreino"></canvas>
+
         </div>
 
         <div class="card">
-            <canvas id="kmSemanal"></canvas>
+
+            <canvas id="kmSemana"></canvas>
+
         </div>
 
     </div>
     
     <div class="card-tiposTreino">
+
         <canvas id="tiposTreino"></canvas>
+
     </div>
 
 </div>
  
 
-
- 
-
-
-
     <!-- Chart.js principal -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Plugin Matrix (arquivo que te mandei) -->
-<script src="../js/chartjs-chart-matrix.js"></script>
 
     <script src="../js/dash.js"></script>
 

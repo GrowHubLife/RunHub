@@ -76,8 +76,82 @@ function listarKpis(req, res) {
 
 
 
+        function paceTreino(req, res){
+            var idUsuario = req.params.idUsuario
+            
+               registroModel.paceTreino(idUsuario)
+            .then(function (resultado) {
 
+                    if (resultado.length > 0) {
+                            res.status(200).json(resultado);
+
+                    } else {
+                        res.status(403).send("nenhum resultado encontrado");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao adicionar os valores nos gráficos! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+
+        }
+
+
+        
+        function KmSemana(req, res){
+            var idUsuario = req.params.idUsuario
+            
+               registroModel.KmSemana(idUsuario)
+            .then(function (resultado) {
+
+                    if (resultado.length > 0) {
+                            res.status(200).json(resultado);
+
+                    } else {
+                        res.status(403).send("nenhum resultado encontrado");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao adicionar os valores nos gráficos! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+
+        }
+
+
+
+         function tiposTreino(req, res){
+            var idUsuario = req.params.idUsuario
+            
+               registroModel.tiposTreino(idUsuario)
+            .then(function (resultado) {
+
+                    if (resultado.length > 0) {
+                            res.status(200).json(resultado);
+
+                    } else {
+                        res.status(403).send("nenhum resultado encontrado");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao adicionar os valores nos gráficos! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+
+        }
 module.exports = {
     cadastrar,
-    listarKpis
+    listarKpis,
+    paceTreino,
+    KmSemana,
+    tiposTreino   
 }
