@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f0f0f;
+    color: #ffffff;
+}
+
+/* Container geral do histórico */
+.historico-container {
+    margin-top: 70px;
+    padding: 30px 40px;
+    width: 90%;
+    margin-left: 200px;
+}
+
+/* Título */
+.historico-container h2 {
+    color: #b2ff59;
+    margin-bottom: 4px;
+}
+
+/* Subtítulo */
+.historico-container p {
+    color: #cccccc;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Lista */
+#lista_historico {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Card do treino */
+.card-historico {
+    background: #1a1a1a;
+    border-left: 4px solid #b2ff59;
+    padding: 18px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.card-historico:hover {
+    transform: scale(1.01);
+}
+
+/* Infos principais */
+.card-historico strong {
+    color: #b2ff59;
+}
+
+/* Texto interno */
+.card-historico br {
+    line-height: 1.8;
+}
+
+/* Observações */
+.card-historico .observacao {
+    margin-top: 10px;
+    font-style: italic;
+    color: #aaaaaa;
+}

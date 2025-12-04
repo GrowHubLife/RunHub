@@ -1,7 +1,7 @@
 /* ===== ÁREA DE CONTEÚDO (fora sidebar/header) ===== */
 .anotacao-container {
-  margin-left: 650px;        /* sidebar */
-  margin-top: 80px;          /* header */
+  margin-left: 800px;        /* sidebar */
+  margin-top: 100px;          /* header */
   padding: 25px;
 }
 

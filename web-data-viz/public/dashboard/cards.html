@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/anotacao.css">
     <link rel="stylesheet" href="../css/mural.css">
+    <link rel="stylesheet" href="../css/historico.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -50,8 +51,11 @@
     </div>
 
     <!-- Pesquisa -->
+    
     <div class="box-pesquisa">
-        <input type="text" placeholder="Search...">
+        <input  type="text" id="searchHistorico" placeholder="Buscar treino..."oninput="buscarTreino()"
+>
+
     </div>
 
 <!-- DASHBOARDS -->
@@ -63,10 +67,6 @@
         Overview
     </li>
 
-    <li id="item_analytics" onclick="ativar('item_analytics')">
-        <img class="icon" width="20" src="https://img.icons8.com/ios-glyphs/90/ffffff/analytics.png">
-        Analytics
-    </li>
 
     <li id="item_registro" onclick="ativar('item_registro'); mostrarRegistro()">
         <img class="icon" width="20" src="https://img.icons8.com/material/24/ffffff/separate-document.png">
@@ -77,32 +77,13 @@
 <div class="secao-titulo">Áreas</div>
 
 <ul class="menu">
-    <li id="item_historico" onclick="ativar('item_historico')">
+<li id="item_historico" onclick="ativar('item_historico'); mostrarHistorico()">
         <img class="icon" width="20"
             src="https://img.icons8.com/external-outline-black-m-oki-orlando/64/ffffff/external-historical-data-warehouse-outline-black-m-oki-orlando.png">
         Histórico
     </li>
 
-    <li id="item_conquistas" onclick="ativar('item_conquistas')">
-        <img class="icon" width="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/star--v1.png">
-        Conquistas
-    </li>
 
-    <li id="item_meus_treinos" onclick="ativar('item_meus_treinos')">
-        <img class="icon" width="20" src="https://img.icons8.com/ios-filled/50/ffffff/strength.png">
-        Meus Treinos
-    </li>
-
-    <li id="item_treinamento" onclick="ativar('item_treinamento')">
-        <img class="icon" width="20" src="https://img.icons8.com/ios-filled/50/ffffff/exercise.png">
-        Treinamento
-    </li>
-
-    <li id="item_dicas" onclick="ativar('item_dicas')">
-        <img class="icon" width="20" src="https://img.icons8.com/external-outline-icons-pause-08/64/ffffff/external-bulb-furniture-outline-icons-pause-08.png">
-        Dicas
-    </li>
-   
     <li id="item_comunidade" onclick="ativar('item_comunidade'); mostrarComunidade()">
         <img class="icon" width="20" src="https://img.icons8.com/external-outline-icons-pause-08/64/ffffff/external-bulb-furniture-outline-icons-pause-08.png">
         Comunidade 
@@ -299,8 +280,22 @@
   </div>
 </div>
 
+<div id="telaHistorico" class="tela" style="display:none;">
 
-<!-- Script da troca de telas -->
+    <div class="historico-container">
+        <h2>Histórico de Treinos</h2>
+        <p>Acompanhe todos os seus treinos registrados</p>
+
+        <div id="lista_historico"></div>
+    </div>
+
+</div>
+
+<script src="../js/historico.js"></script>
+
+
+ <script src="../js/sessao.js"></script>
+
 <script>
 
      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -309,7 +304,9 @@ function esconderTodas() {
     document.getElementById("telaDashboard").style.display = "none";
     document.getElementById("telaRegistro").style.display = "none";
     document.getElementById("telaComunidade").style.display = "none";
+    document.getElementById("telaHistorico").style.display = "none";
 }
+
 
 function mostrarDashboard() {
     esconderTodas();
@@ -326,6 +323,12 @@ function mostrarComunidade() {
     document.getElementById("telaComunidade").style.display = "block";
     atualizarFeed();
 }
+function mostrarHistorico() {
+    esconderTodas();
+    document.getElementById("telaHistorico").style.display = "block";
+    carregarHistorico();
+}
+
 
 function ativar(idAtivo) {
   // IDs de todos os itens do menu

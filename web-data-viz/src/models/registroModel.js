@@ -102,6 +102,23 @@ function buscarKpis(idUsuario) {
     return database.executar(instrucao);
 }
 
+function listarHistorico(idUsuario) {
+    return database.executar(`
+        SELECT 
+            data_treino,
+            distancia_km,
+            tipo_treino,
+            batimentos_medios,
+            pace,
+            calorias,
+            sensacao_do_dia,
+            observacoes
+        FROM registro
+        WHERE fkUsuario = ${idUsuario}
+        ORDER BY data_treino DESC;
+    `, [idUsuario]);
+}
+
 
 function cadastrar(fkUsuario, data_treino, distancia_km, tipo_treino, batimentos_medios, calorias, sensacao_do_dia, observacoes, pace) {
   var instrucaoSql = `INSERT INTO registro (fkUsuario ,data_treino, distancia_km, tipo_treino, batimentos_medios, calorias, sensacao_do_dia, observacoes, pace) VALUES (${fkUsuario},'${data_treino}', '${distancia_km}', '${tipo_treino}', '${batimentos_medios}', '${calorias}', '${sensacao_do_dia}', '${observacoes}', '${pace}')`;
@@ -117,5 +134,6 @@ module.exports = {
   paceTreino,
   KmSemana,
   tiposTreino,
-  buscarKpis
+  buscarKpis,
+  listarHistorico
  };

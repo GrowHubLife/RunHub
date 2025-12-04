@@ -28,6 +28,8 @@ router.get("/tiposTreino/:idUsuario", function (req, res) {
     registroController.tiposTreino(req, res);
 })
 
+router.get("/historico/:idUsuario", registroController.listarHistorico);
+
 
 
 module.exports = router;

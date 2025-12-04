@@ -179,11 +179,30 @@ function buscarKpis(req, res) {
             );
 
         }
+
+        function listarHistorico(req, res) {
+    const idUsuario = req.params.idUsuario;
+
+    registroModel.listarHistorico(idUsuario)
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.json(resultado);
+            } else {
+                res.status(204).send("Nenhum treino encontrado");
+            }
+        })
+        .catch(erro => {
+            console.log("Erro ao buscar histórico:", erro);
+            res.status(500).json(erro);
+        });
+}
+
 module.exports = {
     cadastrar,
     listarKpis,
     paceTreino,
     KmSemana,
     tiposTreino,
-    buscarKpis
+    buscarKpis,
+    listarHistorico
 }
