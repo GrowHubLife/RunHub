@@ -1,0 +1,190 @@
+create database ProjetoPessoal;
+
+use ProjetoPessoalra;
+
+create table usuario (
+id int primary key auto_increment,
+nome varchar(45),
+email varchar(45),
+senha varchar(45)
+);
+
+
+CREATE TABLE comunidade (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	titulo VARCHAR(100),
+	descricao VARCHAR(150),
+	fk_usuario INT,
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
+select *  from registro;
+select *  from aviso;
+
+CREATE TABLE registro (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    data_treino DATE,
+    distancia_km INT,
+    tipo_treino VARCHAR(20),
+    CONSTRAINT chkTipoTreino CHECK (tipo_treino IN ('Leve', 'Intervalado', 'Tiro', 'Longão', 'Caminhada')),
+    batimentos_medios INT,
+	pace INT,
+    calorias INT,
+    sensacao_do_dia INT,
+    CONSTRAINT chkSensacaoDoDia CHECK (sensacao_do_dia BETWEEN 1 AND 10),
+    observacoes TEXT,
+	fkUsuario int,
+    foreign key (fkUsuario)
+    references usuario(id)
+);
+
+
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes) VALUES 
+('2020-12-12', 12, 'Leve', 80, 4, 100, 5,4, "bem");	
+
+select * from registro;
+
+SELECT SUM(distancia_km) AS total_distancia
+FROM registro
+WHERE fkUsuario = 6;
+
+SELECT MIN(pace) AS melhor_pace
+FROM registro
+WHERE fkUsuario = 2;
+
+SELECT COUNT(data_treino) as diasTreinados
+FROM registro
+WHERE fkUsuario = 1;
+
+  SELECT distancia_km as Distancia FROM registro WHERE distancia = '${distancia_km}';
+  
+  
+  select * from registro as r join usuario as u on r.fkUsuario = u.id;
+  
+SELECT 
+    IFNULL((
+        SELECT SUM(distancia_km)
+        FROM registro
+        WHERE fkUsuario = 6
+    ), 0) AS totalKM,
+
+    IFNULL((
+        SELECT MIN(pace)
+        FROM registro
+        WHERE fkUsuario  = 6
+    ), 0) AS melhorPace,
+
+    IFNULL((
+        SELECT COUNT(DISTINCT data_treino)
+        FROM registro
+        WHERE fkUsuario =6
+    ), 0) AS diasTreinados,
+
+    IFNULL((
+        SELECT SUM(calorias)
+        FROM registro
+        WHERE fkUsuario = 6
+    ), 0) AS caloriasTotal;
+    
+    
+    INSERT INTO registro (pace, distancia_km, tipo_treino);
+    
+    SELECT 
+            data_treino,
+            distancia_km,
+            pace,
+            tipo_treino,
+            calorias
+    FROM registro
+    WHERE fkUsuario = 6
+    ORDER BY data_treino ASC;
+    
+    select * from registro; 
+    
+SELECT 
+    id,
+    data_treino,
+    distancia_km,
+    tipo_treino,
+    batimentos_medios,
+    pace,
+    calorias,
+    sensacao_do_dia,
+    observacoes,
+    fkUsuario
+FROM 
+    registro
+WHERE 
+    fkUsuario = 6;
+    
+    
+    SELECT 
+    id AS treino_id,
+    pace
+FROM 
+    registro
+WHERE 
+    fkUsuario = 6
+ORDER BY 
+    data_treino ASC;
+    
+    
+    DESC registro;
+    SELECT 
+    id AS treino_id,
+    pace
+    FROM 
+        registro
+    WHERE 
+        fkUsuario = 6
+    ORDER BY 
+        data_treino ASC
+    LIMIT 5;
+    
+    SELECT 
+    data_treino,
+    distancia_km
+FROM 
+    registro
+WHERE 
+    fkUsuario = 6
+ORDER BY 
+    data_treino ASC
+LIMIT 6;
+
+-- Semana 1 (12 km)
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes, fkUsuario)
+VALUES ('2025-01-06', 12, 'Leve', 150, 6, 500, 7, 'Treino leve da semana 1', 6);
+
+-- Semana 2 (18 km)
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes, fkUsuario)
+VALUES 
+('2025-01-13', 10, 'Intervalado', 160, 4, 600, 7, 'Intervalado', 6),
+('2025-01-15', 8, 'Leve', 148, 6, 450, 8, 'Corre bem', 6);
+
+-- Semana 3 (22 km)
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes, fkUsuario)
+VALUES 
+('2025-01-20', 12, 'Leve', 152, 6, 520, 7, 'Bom treino', 6),
+('2025-01-22', 10, 'Tiro', 168, 3, 650, 6, 'Tiro forte', 6);
+
+-- Semana 4 (15 km)
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes, fkUsuario)
+VALUES 
+('2025-01-27', 7, 'Leve', 150, 6, 400, 7, 'Cansada', 6),
+('2025-01-29', 8, 'Caminhada', 120, 5, 300, 8, 'Caminhada leve', 6);
+
+-- Semana 5 (28 km)
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes, fkUsuario)
+VALUES 
+('2025-02-03', 15, 'Longão', 155, 4, 900, 8, 'Longão top', 6),
+('2025-02-06', 13, 'Leve', 148, 5, 550, 8, 'Fluiu bem', 6);
+
+-- Semana 6 (34 km)
+INSERT INTO registro (data_treino, distancia_km, tipo_treino, batimentos_medios, pace, calorias, sensacao_do_dia, observacoes, fkUsuario)
+VALUES 
+('2025-02-10', 20, 'Longão', 160, 4, 1100, 9, 'Semana forte', 6),
+('2025-02-12', 14, 'Intervalado', 165, 3, 700, 7, 'Intervalado puxado', 6);
+
+select tipo_treino from registro where fkUsuario = 6;
+truncate table registro;
